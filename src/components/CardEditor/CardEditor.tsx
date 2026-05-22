@@ -11,11 +11,15 @@ type Props = {
 export function CardEditor({ editingCard, onSave, onCancel }: Props) {
   const [front, setFront] = useState(editingCard?.front ?? '')
   const [back, setBack] = useState(editingCard?.back ?? '')
+  const [submitted, setSubmitted] = useState(false)
 
-  const isValid = front.trim().length > 0 && back.trim().length > 0
+  const isFrontEmpty = front.trim().length === 0
+  const isBackEmpty = back.trim().length === 0
+  const isValid = !isFrontEmpty && !isBackEmpty
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    setSubmitted(true)
     if (!isValid) return
     onSave(front.trim(), back.trim())
   }
@@ -39,6 +43,9 @@ export function CardEditor({ editingCard, onSave, onCancel }: Props) {
             }
             placeholder="例：日本の首都は？"
           />
+          {submitted && isFrontEmpty && (
+            <p className={styles.error}>表面を入力してください</p>
+          )}
         </div>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="back">
@@ -53,10 +60,10 @@ export function CardEditor({ editingCard, onSave, onCancel }: Props) {
             }
             placeholder="例：東京"
           />
+          {submitted && isBackEmpty && (
+            <p className={styles.error}>裏面を入力してください</p>
+          )}
         </div>
-        {!isValid && front.length > 0 && back.length === 0 && (
-          <p className={styles.error}>裏面を入力してください</p>
-        )}
         <div className={styles.actions}>
           <button
             type="button"
@@ -68,7 +75,7 @@ export function CardEditor({ editingCard, onSave, onCancel }: Props) {
           <button
             type="submit"
             className={styles.btnPrimary}
-            disabled={!isValid}
+            disabled={submitted && !isValid}
           >
             保存
           </button>
