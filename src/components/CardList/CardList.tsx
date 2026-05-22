@@ -32,12 +32,19 @@ export function CardList({
       const items = parseCSV(text)
       if (items.length > 0) {
         onImport(items)
+      } else {
+        alert('インポートできるカードが見つかりませんでした。\nCSVの形式を確認してください（1列目: 表、2列目: 裏）。')
       }
       if (fileInputRef.current) {
         fileInputRef.current.value = ''
       }
     }
     reader.readAsText(file, 'UTF-8')
+  }
+
+  function handleDelete(id: string) {
+    if (!window.confirm('このカードを削除しますか？')) return
+    onDelete(id)
   }
 
   return (
@@ -96,7 +103,7 @@ export function CardList({
                 <button
                   type="button"
                   className={`${styles.btnIcon} ${styles.btnDelete}`}
-                  onClick={() => onDelete(card.id)}
+                  onClick={() => handleDelete(card.id)}
                 >
                   削除
                 </button>
