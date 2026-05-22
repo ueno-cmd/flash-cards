@@ -3,6 +3,15 @@ import type { Card } from '../types'
 
 const STORAGE_KEY = 'flashcard_cards'
 
+// HTTP環境（LAN共有など）でcrypto.randomUUID()が使えない場合のフォールバック
+function generateId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID()
+  }
+  // フォールバック: Math.randomとDate.nowを組み合わせてIDを生成
+  return Math.random().toString(36).slice(2) + Date.now().toString(36)
+}
+
 function isCard(value: unknown): value is Card {
   return (
     typeof value === 'object' &&
@@ -39,7 +48,7 @@ export function useCards() {
 
   function addCard(front: string, back: string): void {
     const newCard: Card = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       front,
       back,
       createdAt: Date.now(),
@@ -60,7 +69,7 @@ export function useCards() {
   function importCards(items: Omit<Card, 'id' | 'createdAt'>[]): void {
     const newCards: Card[] = items.map((item) => ({
       ...item,
-      id: crypto.randomUUID(),
+      id: generateId(),
       createdAt: Date.now(),
     }))
     setCards((prev) => [...prev, ...newCards])
