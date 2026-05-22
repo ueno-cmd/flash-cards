@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Card, AppMode } from './types'
+import type { Card, AppMode, StudyResult } from './types'
 import { useCards } from './hooks/useCards'
 import { CardList } from './components/CardList/CardList'
 import { CardEditor } from './components/CardEditor/CardEditor'
@@ -10,6 +10,7 @@ function App() {
   const { cards, addCard, updateCard, deleteCard, importCards } = useCards()
   const [mode, setMode] = useState<AppMode>('list')
   const [editingCard, setEditingCard] = useState<Card | null>(null)
+  const [studyResult, setStudyResult] = useState<StudyResult>({ total: 0, correct: 0 })
 
   function handleAdd() {
     setEditingCard(null)
@@ -38,7 +39,8 @@ function App() {
     setMode('study')
   }
 
-  function handleFinishStudy() {
+  function handleFinishStudy(result: StudyResult) {
+    setStudyResult(result)
     setMode('summary')
   }
 
@@ -77,7 +79,7 @@ function App() {
   if (mode === 'summary') {
     return (
       <Summary
-        cards={cards}
+        result={studyResult}
         onRetry={handleRetry}
         onBack={handleBackToList}
       />
