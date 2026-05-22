@@ -50,7 +50,13 @@ export function CardList({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <p className={styles.title}>カード一覧（{cards.length}枚）</p>
+        <div className={styles.titleBlock}>
+          <span className={styles.appName}>Flash Cards</span>
+          <p className={styles.title}>
+            カード一覧
+            <span className={styles.titleCount}>{cards.length}枚</span>
+          </p>
+        </div>
         <div className={styles.headerActions}>
           <input
             ref={fileInputRef}
@@ -64,11 +70,11 @@ export function CardList({
             className={styles.btnSecondary}
             onClick={() => fileInputRef.current?.click()}
           >
-            CSVインポート
+            CSV取込
           </button>
           <button
             type="button"
-            className={styles.btnSecondary}
+            className={styles.btnStudy}
             disabled={cards.length === 0}
             onClick={onStartStudy}
           >

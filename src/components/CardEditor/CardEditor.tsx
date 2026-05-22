@@ -26,13 +26,17 @@ export function CardEditor({ editingCard, onSave, onCancel }: Props) {
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>
-        {editingCard ? 'カードを編集' : 'カードを追加'}
-      </p>
+      <div className={styles.header}>
+        <span className={styles.label_app}>Flash Cards</span>
+        <p className={styles.title}>
+          {editingCard ? 'カードを編集' : 'カードを追加'}
+        </p>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="front">
             表（問い）
+            <span className={styles.labelBadge}>FRONT</span>
           </label>
           <textarea
             id="front"
@@ -50,6 +54,7 @@ export function CardEditor({ editingCard, onSave, onCancel }: Props) {
         <div className={styles.field}>
           <label className={styles.label} htmlFor="back">
             裏（答え）
+            <span className={styles.labelBadge}>BACK</span>
           </label>
           <textarea
             id="back"
@@ -77,7 +82,7 @@ export function CardEditor({ editingCard, onSave, onCancel }: Props) {
             className={styles.btnPrimary}
             disabled={submitted && !isValid}
           >
-            保存
+            保存する
           </button>
         </div>
       </form>

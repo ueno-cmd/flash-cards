@@ -1,92 +1,181 @@
 .container {
-  padding: 48px 16px;
+  padding: 48px 20px 48px;
   max-width: 480px;
   margin: 0 auto;
   width: 100%;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   text-align: center;
+  min-height: 100svh;
+}
+
+.badge {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 4px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg-surface);
 }
 
 .heading {
-  font-size: 28px;
+  font-family: var(--font-serif);
+  font-size: 32px;
   font-weight: 700;
   color: var(--text-h);
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+
+/* スコアカード */
+.scoreCard {
+  width: 100%;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 20px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* スコアリング：大きなスコア表示 */
+.scoreMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.scoreNumber {
+  font-family: var(--font-serif);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.scoreDenom {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* 区切り線 */
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  border: none;
   margin: 0;
 }
 
-.message {
-  font-size: 16px;
-  color: var(--text);
-  line-height: 1.6;
-  margin: 0;
+/* 詳細グリッド */
+.resultGrid {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+}
+
+.resultItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+  border-right: 1px solid var(--border-light);
+}
+
+.resultItem:last-child {
+  border-right: none;
 }
 
 .count {
-  font-size: 48px;
+  font-family: var(--font-serif);
+  font-size: 36px;
   font-weight: 700;
-  color: var(--accent);
   line-height: 1;
+  color: var(--accent);
+}
+
+.correct .count {
+  color: var(--correct);
+}
+
+.incorrect .count {
+  color: var(--incorrect);
 }
 
 .countLabel {
-  font-size: 15px;
-  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
 }
 
+/* メッセージ */
+.message {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* アクションボタン */
 .actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
 }
 
 .btnPrimary {
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-sans);
   border: none;
   border-radius: 8px;
   background: var(--accent);
   color: #fff;
   cursor: pointer;
-  min-height: 48px;
+  min-height: 52px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2), 0 4px 12px rgba(192,57,43,0.3);
+}
+
+.btnPrimary:hover {
+  background: var(--accent-light);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2), 0 6px 16px rgba(192,57,43,0.4);
 }
 
 .btnSecondary {
-  padding: 14px;
-  font-size: 16px;
+  padding: 15px;
+  font-size: 15px;
   font-weight: 500;
-  border: 1px solid var(--border);
+  font-family: var(--font-sans);
+  border: 1.5px solid var(--border);
   border-radius: 8px;
-  background: var(--bg);
+  background: var(--bg-card);
   color: var(--text-h);
   cursor: pointer;
-  min-height: 48px;
+  min-height: 52px;
+  box-shadow: var(--shadow-sm);
 }
 
-.resultGrid {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin: 0;
-}
-
-.resultItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 5rem;
-}
-
-.correct .count {
-  color: #22c55e;
-}
-
-.incorrect .count {
-  color: #ef4444;
+.btnSecondary:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-bg);
 }

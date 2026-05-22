@@ -1,53 +1,95 @@
 .container {
-  padding: 24px 16px;
-  max-width: 480px;
+  padding: 32px 16px 40px;
+  max-width: 520px;
   margin: 0 auto;
   width: 100%;
-  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 28px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.label_app {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0 0 24px;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
   color: var(--text-h);
+  letter-spacing: 0.03em;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
   color: var(--text-h);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.labelBadge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--border);
+  color: var(--text-muted);
 }
 
 .textarea {
   font-size: 16px;
-  font-family: var(--sans);
-  padding: 12px;
-  border: 1px solid var(--border);
+  font-family: var(--font-serif);
+  padding: 14px 16px;
+  border: 2px solid var(--border);
   border-radius: 8px;
-  background: var(--bg);
+  background: var(--bg-input);
   color: var(--text-h);
   resize: vertical;
-  min-height: 80px;
-  box-sizing: border-box;
+  min-height: 90px;
   width: 100%;
+  line-height: 1.7;
+  transition: border-color 0.15s;
 }
 
 .textarea:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 0;
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.textarea::placeholder {
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 14px;
 }
 
 .error {
   font-size: 13px;
-  color: #e53e3e;
+  color: var(--incorrect);
+  font-family: var(--font-sans);
 }
 
 .actions {
@@ -59,30 +101,47 @@
 .btnPrimary {
   flex: 1;
   padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-sans);
   border: none;
   border-radius: 8px;
   background: var(--accent);
   color: #fff;
   cursor: pointer;
-  min-height: 48px;
+  min-height: 52px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2), 0 4px 12px rgba(192,57,43,0.3);
+}
+
+.btnPrimary:hover {
+  background: var(--accent-light);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2), 0 6px 16px rgba(192,57,43,0.4);
 }
 
 .btnPrimary:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .btnSecondary {
   flex: 1;
   padding: 14px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
-  border: 1px solid var(--border);
+  font-family: var(--font-sans);
+  border: 1.5px solid var(--border);
   border-radius: 8px;
-  background: var(--bg);
+  background: var(--bg-card);
   color: var(--text-h);
   cursor: pointer;
-  min-height: 48px;
+  min-height: 52px;
+  box-shadow: var(--shadow-sm);
+}
+
+.btnSecondary:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-bg);
 }

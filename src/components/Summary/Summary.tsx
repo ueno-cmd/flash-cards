@@ -10,36 +10,44 @@ type Props = {
 export function Summary({ result, onRetry, onBack }: Props) {
   const { total, correct } = result
   const incorrect = total - correct
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0
 
   return (
     <div className={styles.container}>
+      <span className={styles.badge}>Study Complete</span>
       <p className={styles.heading}>おつかれさまでした！</p>
-      <div className={styles.resultGrid}>
-        <div className={styles.resultItem}>
-          <p className={styles.count}>{total}</p>
-          <p className={styles.countLabel}>枚学習</p>
+
+      <div className={styles.scoreCard}>
+        <div className={styles.scoreMain}>
+          <span className={styles.scoreNumber}>{pct}%</span>
+          <span className={styles.scoreDenom}>正答率</span>
         </div>
-        <div className={`${styles.resultItem} ${styles.correct}`}>
-          <p className={styles.count}>{correct}</p>
-          <p className={styles.countLabel}>正解</p>
-        </div>
-        <div className={`${styles.resultItem} ${styles.incorrect}`}>
-          <p className={styles.count}>{incorrect}</p>
-          <p className={styles.countLabel}>不正解</p>
+        <hr className={styles.divider} />
+        <div className={styles.resultGrid}>
+          <div className={styles.resultItem}>
+            <p className={styles.count}>{total}</p>
+            <p className={styles.countLabel}>問</p>
+          </div>
+          <div className={`${styles.resultItem} ${styles.correct}`}>
+            <p className={styles.count}>{correct}</p>
+            <p className={styles.countLabel}>正解</p>
+          </div>
+          <div className={`${styles.resultItem} ${styles.incorrect}`}>
+            <p className={styles.count}>{incorrect}</p>
+            <p className={styles.countLabel}>不正解</p>
+          </div>
         </div>
       </div>
+
       <p className={styles.message}>
         もう一度チャレンジしますか？
       </p>
+
       <div className={styles.actions}>
         <button type="button" className={styles.btnPrimary} onClick={onRetry}>
-          もう一度
+          もう一度やる
         </button>
-        <button
-          type="button"
-          className={styles.btnSecondary}
-          onClick={onBack}
-        >
+        <button type="button" className={styles.btnSecondary} onClick={onBack}>
           一覧へ戻る
         </button>
       </div>

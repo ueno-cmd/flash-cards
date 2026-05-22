@@ -13,12 +13,11 @@ export function StudyMode({ cards, onFinish, onCancel }: Props) {
   const [isFlipped, setIsFlipped] = useState(false)
   const [correctCount, setCorrectCount] = useState(0)
 
-  // 空配列ガード
   if (cards.length === 0) {
     return (
       <div className={styles.container}>
         <p className={styles.empty}>学習できるカードがありません。</p>
-        <button type="button" className={styles.btnCancel} onClick={onCancel}>
+        <button type="button" className={styles.btnBack} onClick={onCancel}>
           一覧へ戻る
         </button>
       </div>
@@ -27,6 +26,7 @@ export function StudyMode({ cards, onFinish, onCancel }: Props) {
 
   const card = cards[currentIndex]
   const isLast = currentIndex === cards.length - 1
+  const progressPct = ((currentIndex + (isFlipped ? 1 : 0)) / cards.length) * 100
 
   function handleFlip() {
     setIsFlipped(true)
@@ -45,16 +45,21 @@ export function StudyMode({ cards, onFinish, onCancel }: Props) {
 
   return (
     <div className={styles.container}>
-      <p className={styles.progress}>
-        {currentIndex + 1} / {cards.length}
-      </p>
+      <div className={styles.progressRow}>
+        <span className={styles.progress}>{currentIndex + 1} / {cards.length}</span>
+        <div className={styles.progressBar}>
+          <div className={styles.progressFill} style={{ width: `${progressPct}%` }} />
+        </div>
+      </div>
+
       <button
         type="button"
-        className={styles.card}
+        className={`${styles.card} ${isFlipped ? styles.flipped : ''}`}
         onClick={!isFlipped ? handleFlip : undefined}
         aria-label={isFlipped ? undefined : 'タップして裏を確認'}
+        style={{ cursor: isFlipped ? 'default' : 'pointer' }}
       >
-        <span className={styles.cardLabel}>{isFlipped ? '裏' : '表'}</span>
+        <span className={styles.cardSide}>{isFlipped ? '裏 / Answer' : '表 / Question'}</span>
         <span className={styles.cardText}>
           {isFlipped ? card.back : card.front}
         </span>
@@ -62,13 +67,14 @@ export function StudyMode({ cards, onFinish, onCancel }: Props) {
           <span className={styles.hint}>タップして裏返す</span>
         )}
       </button>
+
       <div className={styles.actions}>
         <button
           type="button"
-          className={styles.btnCancel}
+          className={styles.btnBack}
           onClick={onCancel}
         >
-          一覧へ
+          一覧
         </button>
         {isFlipped ? (
           <div className={styles.judgeButtons}>
@@ -90,9 +96,8 @@ export function StudyMode({ cards, onFinish, onCancel }: Props) {
         ) : (
           <button
             type="button"
-            className={styles.btnNext}
+            className={styles.btnFlip}
             onClick={handleFlip}
-            disabled={isFlipped}
           >
             裏を見る
           </button>
