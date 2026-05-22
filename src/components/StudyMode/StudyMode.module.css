@@ -96,3 +96,49 @@
   cursor: pointer;
   min-height: 48px;
 }
+
+.empty {
+  text-align: center;
+  color: var(--text);
+  margin: 2rem 0;
+}
+
+.judgeButtons {
+  display: flex;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.btnCorrect {
+  flex: 1;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #22c55e;
+  color: #fff;
+}
+
+.btnCorrect:active {
+  opacity: 0.85;
+}
+
+.btnIncorrect {
+  flex: 1;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.btnIncorrect:active {
+  opacity: 0.85;
+}
