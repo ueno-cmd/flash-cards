@@ -1,0 +1,70 @@
+.container {
+  padding: 48px 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.message {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.count {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.countLabel {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.btnPrimary {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  min-height: 48px;
+}
+
+.btnSecondary {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  min-height: 48px;
+}
