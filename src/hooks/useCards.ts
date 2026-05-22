@@ -8,8 +8,8 @@ function generateId(): string {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
     return crypto.randomUUID()
   }
-  // フォールバック: Math.randomとDate.nowを組み合わせてIDを生成
-  return Math.random().toString(36).slice(2) + Date.now().toString(36)
+  // フォールバック: タイムスタンプ＋乱数で衝突を回避
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`
 }
 
 function isCard(value: unknown): value is Card {
