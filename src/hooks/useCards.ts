@@ -3,13 +3,24 @@ import type { Card } from '../types'
 
 const STORAGE_KEY = 'flashcard_cards'
 
+function isCard(value: unknown): value is Card {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as Record<string, unknown>).id === 'string' &&
+    typeof (value as Record<string, unknown>).front === 'string' &&
+    typeof (value as Record<string, unknown>).back === 'string' &&
+    typeof (value as Record<string, unknown>).createdAt === 'number'
+  )
+}
+
 function loadCards(): Card[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return []
     const parsed: unknown = JSON.parse(raw)
     if (!Array.isArray(parsed)) return []
-    return parsed as Card[]
+    return parsed.filter(isCard)
   } catch {
     return []
   }
