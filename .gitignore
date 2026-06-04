@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 環境変数
+.env
+.env.*
+
+# Claude Code 内部ファイル
+.claude/
+docs/steering/
+docs/superpowers/
